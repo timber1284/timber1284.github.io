@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>51今日爆料每日大赛-今日热点爆料合集_每日大赛最新吃瓜</title>
+<meta name="description" content="51今日爆料每日大赛聚合当日热点爆料与每日大赛最新吃瓜内容，按时间线呈现热门话题、爆料条目与网友讨论，方便快速浏览今日看点。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316181d'/%3E%3Cpath d='M18 40c6-14 10-18 14-18s8 4 14 18' stroke='%23ff5a5f' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='46' r='4' fill='%23ffd166'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#0f1115;
+  --panel:#171a21;
+  --panel-2:#1e222b;
+  --line:#2a2f3a;
+  --text:#e8eaf0;
+  --muted:#9aa2b1;
+  --red:#ff5a5f;
+  --amber:#ffd166;
+  --radius:16px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB","Noto Sans SC",system-ui,-apple-system,sans-serif;
+  line-height:1.75;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none;}
+img,svg{display:block;max-width:100%;}
+.wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 20px;}
+
+/* header */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(15,17,21,.9);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:16px;padding:14px 0;
+}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.logo-mark{width:38px;height:38px;flex-shrink:0;}
+.logo-text{
+  font-size:17px;font-weight:800;letter-spacing:.5px;
+  white-space:nowrap;
+}
+.logo-text b{color:var(--red);}
+.nav{display:flex;gap:22px;flex-wrap:wrap;}
+.nav a{
+  font-size:14.5px;color:var(--muted);padding:4px 0;
+  border-bottom:2px solid transparent;transition:.2s;
+}
+.nav a:hover,.nav a:focus{color:var(--text);border-bottom-color:var(--red);}
+.menu-toggle{
+  display:none;background:none;border:1px solid var(--line);
+  color:var(--text);border-radius:10px;padding:7px 12px;font-size:14px;cursor:pointer;
+}
+
+/* hero */
+.hero{
+  position:relative;overflow:hidden;
+  border-bottom:1px solid var(--line);
+  background:
+    radial-gradient(700px 320px at 82% 0%,rgba(255,90,95,.16),transparent 70%),
+    radial-gradient(520px 300px at 8% 100%,rgba(255,209,102,.10),transparent 70%);
+}
+.hero-inner{
+  display:grid;grid-template-columns:1.35fr .85fr;gap:36px;
+  padding:52px 0 46px;align-items:center;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;color:var(--amber);
+  border:1px solid rgba(255,209,102,.35);
+  background:rgba(255,209,102,.08);
+  padding:5px 12px;border-radius:999px;margin-bottom:18px;
+}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--red);animation:pulse 1.6s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+h1{
+  font-size:clamp(26px,4.4vw,42px);
+  line-height:1.3;margin:0 0 16px;font-weight:900;
+  letter-spacing:.5px;
+}
+h1 em{color:var(--red);font-style:normal;}
+.hero p.lead{
+  color:var(--muted);font-size:16px;margin:0 0 26px;max-width:34em;
+}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 22px;border-radius:12px;font-size:15px;font-weight:700;
+  border:1px solid transparent;transition:.2s;cursor:pointer;
+}
+.btn-primary{background:var(--red);color:#fff;}
+.btn-primary:hover{background:#ff7378;}
+.btn-ghost{background:transparent;color:var(--text);border-color:var(--line);}
+.btn-ghost:hover{border-color:var(--red);color:var(--red);}
+.hero-art{
+  background:var(--panel);border:1px solid var(--line);
+  border-radius:var(--radius);padding:18px;
+}
+.hero-art h3{
+  font-size:14px;color:var(--muted);margin:0 0 14px;font-weight:600;
+  letter-spacing:1px;
+}
+.ticker{list-style:none;margin:0;padding:0;}
+.ticker li{
+  display:flex;gap:10px;font-size:14px;color:var(--text);
+  padding:9px 0;border-bottom:1px dashed var(--line);
+}
+.ticker li:last-child{border-bottom:none;}
+.ticker .time{color:var(--red);font-weight:700;flex-shrink:0;font-variant-numeric:tabular-nums;}
+.ticker .txt{color:var(--muted);}
+
+/* sections */
+section{padding:52px 0;}
+.section-head{margin-bottom:26px;}
+.eyebrow{
+  font-size:13px;letter-spacing:2px;color:var(--red);
+  font-weight:700;margin:0 0 8px;
+}
+h2{font-size:clamp(21px,2.8vw,27px);margin:0 0 10px;font-weight:800;}
+.section-head p{color:var(--muted);margin:0;font-size:15px;max-width:44em;}
+
+.toolbar{
+  display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;
+  align-items:center;
+}
+.chip{
+  background:var(--panel);border:1px solid var(--line);color:var(--muted);
+  padding:7px 16px;border-radius:999px;font-size:14px;cursor:pointer;transition:.2s;
+}
+.chip:hover{color:var(--text);border-color:#3d4characters;}
+.chip.active{background:var(--red);border-color:var(--red);color:#fff;font-weight:700;}
+
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.card{
+  background:var(--panel);border:1px solid var(--line);
+  border-radius:var(--radius);padding:20px;display:flex;flex-direction:column;
+  transition:.2s;
+}
+.card:hover{border-color:#3b4150;transform:translateY(-2px);}
+.card .tag{
+  align-self:flex-start;font-size:12px;color:var(--amber);
+  background:rgba(255,209,102,.1);border:1px solid rgba(255,209,102,.28);
+  padding:2px 10px;border-radius:6px;margin-bottom:14px;font-weight:700;
+}
+.card h3{font-size:17px;margin:0 0 10px;font-weight:800;line-height:1.5;}
+.card p{margin:0 0 16px;color:var(--muted);font-size:14.5px;flex:1;}
+.card .meta{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:13px;color:#6d7585;border-top:1px solid var(--line);padding-top:12px;
+}
+.card .meta a{color:var(--red);font-weight:700;}
+
+/* feature list */
+.feature{
+  display:grid;grid-template-columns:1fr 1fr;gap:18px;
+}
+.feat{
+  background:var(--panel-2);border:1px solid var(--line);
+  border-radius:var(--radius);padding:24px;
+}
+.feat h3{margin:0 0 12px;font-size:18px;font-weight:800;}
+.feat p{margin:0 0 12px;color:var(--muted);font-size:14.5px;}
+.feat ul{margin:0;padding-left:18px;color:var(--muted);font-size:14.5px;}
+.feat ul li{margin-bottom:6px;}
+.feat ul li b{color:var(--text);}
+
+/* article block */
+.article{
+  background:var(--panel);border:1px solid var(--line);
+  border-radius:var(--radius);padding:32px;
+}
+.article h2{margin-top:0;}
+.article h3{font-size:17px;margin:26px 0 10px;font-weight:800;color:var(--amber);}
+.article p{margin:0 0 14px;color:#c3c9d4;font-size:15.5px;}
+.article p:last-child{margin-bottom:0;}
+.article strong{color:var(--text);}
+
+/* download */
+.download{
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  flex-wrap:wrap;
+  background:linear-gradient(120deg,rgba(255,90,95,.13),rgba(255,209,102,.07));
+  border:1px solid rgba(255,90,95,.28);
+  border-radius:var(--radius);padding:28px 30px;
+}
+.download h3{margin:0 0 6px;font-size:19px;font-weight:800;}
+.download p{margin:0;color:var(--muted);font-size:14.5px;}
+.btn-disabled{
+  background:#3a3f4b;color:#9aa2b1;pointer-events:none;
+  border:1px solid #474d5b;
+}
+
+/* footer */
+.site-footer{
+  border-top:1px solid var(--line);
+  background:#0b0d11;
+  padding:34px 0 26px;
+}
+.footer-inner{
+  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  align-items:flex-start;
+}
+.footer-brand{max-width:24em;}
+.footer-brand .logo-text{font-size:16px;margin-bottom:10px;}
+.footer-brand p{color:#6d7585;font-size:13.5px;margin:0;}
+.footer-links{display:flex;gap:40px;flex-wrap:wrap;}
+.footer-links div{display:flex;flex-direction:column;gap:8px;}
+.footer-links span{font-size:13px;color:#6d7585;margin-bottom:2px;}
+.footer-links a{font-size:13.5px;color:var(--muted);}
+.footer-links a:hover{color:var(--red);}
+.copyright{
+  margin-top:26px;padding-top:18px;border-top:1px solid var(--line);
+  font-size:13px;color:#5a6170;display:flex;justify-content:space-between;
+  gap:12px;flex-wrap:wrap;
+}
+
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr;padding:38px 0;}
+  .grid{grid-template-columns:repeat(2,1fr);}
+  .feature{grid-template-columns:1fr;}
+}
+@media(max-width:640px){
+  .nav{display:none;}
+  .nav.open{
+    display:flex;flex-direction:column;gap:0;
+    position:absolute;top:100%;left:0;right:0;
+    background:var(--panel);border-bottom:1px solid var(--line);
+    padding:8px 20px 14px;
+  }
+  .nav.open a{padding:10px 0;border-bottom:1px solid var(--line);font-size:15px;}
+  .menu-toggle{display:inline-block;}
+  .header-inner{position:relative;}
+  .grid{grid-template-columns:1fr;}
+  .article{padding:22px;}
+  section{padding:38px 0;}
+  .logo-text{font-size:15px;white-space:normal;line-height:1.3;}
+  .download{padding:22px;}
+  body{font-size:15.5px;}
+}
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="logo" href="#top" aria-label="51今日爆料每日大赛首页">
+      <svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#1e222b" stroke="#2a2f3a"/>
+        <path d="M18 40c6-14 10-18 14-18s8 4 14 18" stroke="#ff5a5f" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <circle cx="32" cy="46" r="4" fill="#ffd166"/>
+      </svg>
+      <span class="logo-text">51今日爆料每日大赛</span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="nav">菜单</button>
+    <nav class="nav" id="nav" aria-label="主导航">
+      <a href="#today">今日看点</a>
+      <a href="#list">爆料列表</a>
+      <a href="#review">昨日回看</a>
+      <a href="#read">吃瓜须知</a>
+      <a href="#download">获取更新</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <span class="hero-badge"><span class="dot"></span>每日更新 · 今日已上新</span>
+        <h1>51今日爆料每日大赛</h1>
+        <p class="lead">把一天里流传最广的热点爆料收进一个页面：谁在讨论、讨论什么、讨论到哪一步。51今日爆料每日大赛按时间线排列条目，先看概要，再决定要不要往下翻。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#list">浏览今日爆料</a>
+          <a class="btn btn-ghost" href="#today">先看三条摘要</a>
+        </div>
+      </div>
+      <aside class="hero-art" aria-label="今日速览">
+        <h3>今日速览</h3>
+        <ul class="ticker">
+          <li><span class="time">09:12</span><span class="txt">早间热门话题集中出现，讨论量上升</span></li>
+          <li><span class="time">13:40</span><span class="txt">午间爆料条目更新，多条进入热榜</span></li>
+          <li><span class="time">18:05</span><span class="txt">晚间吃瓜高峰，评论互动明显增多</span></li>
+          <li><span class="time">22:30</span><span class="txt">当日回顾条目归档，供次日回看</span></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+
+  <!-- 今日看点 -->
+  <section id="today">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">TODAY</p>
+        <h2>今日看点：三条先读</h2>
+        <p>时间有限时，从这三条开始。它们分别代表今天讨论度靠前的三类内容：突发话题、持续发酵、以及已被澄清的传闻。</p>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <span class="tag">突发</span>
+          <h3>话题从早间开始升温</h3>
+          <p>今日早间出现的新爆料在短时间内被大量转发，讨论集中在事件本身的时间线与当事人回应，目前仍以网友说法为主。</p>
+          <div class="meta"><span>更新 09:12</span><a href="#list">查看条目</a></div>
+        </article>
+        <article class="card">
+          <span class="tag">发酵</span>
+          <h3>午间条目持续被跟进</h3>
+          <p>中午上新的爆料延续了上午的话题，新的说法补充了细节，但关键信息尚未得到确认，建议对照多条来源再看。</p>
+          <div class="meta"><span>更新 13:40</span><a href="#list">查看条目</a></div>
+        </article>
+        <article class="card">
+          <span class="tag">澄清</span>
+          <h3>一条传闻已出现反转</h3>
+          <p>此前流传的一则说法在晚间被指出存在断章取义，原内容与传播版本有明显出入，51今日爆料每日大赛已将该条目标注为待核实。</p>
+          <div class="meta"><span>更新 20:18</span><a href="#list">查看条目</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 爆料列表 -->
+  <section id="list">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">FEED</p>
+        <h2>爆料列表：按类型筛选</h2>
+        <p>列表按热度与时间综合排列，点击分类可缩小范围。每个条目都标注了当前状态，未确认的内容会明确写出。</p>
+      </div>
+      <div class="toolbar" id="toolbar">
+        <button class="chip active" data-filter="all">全部</button>
+        <button class="chip" data-filter="hot">热门</button>
+        <button class="chip" data-filter="new">最新</button>
+        <button class="chip" data-filter="check">待核实</button>
+      </div>
+      <div class="grid" id="feed">
+        <article class="card" data-type="hot">
+          <span class="tag">热门</span>
+          <h3>今日最受关注的一条爆料</h3>
+          <p>讨论量在午后快速上升，评论区出现多种说法。51今日爆料每日大赛保留原始表述，不做二次加工，读者可自行判断。</p>
+          <div class="meta"><span>热度 高</span><a href="#read">阅读提示</a></div>
+        </article>
+        <article class="card" data-type="new">
+          <span class="tag">最新</span>
+          <h3>刚刚加入列表的新条目</h3>
+          <p>晚间新增的内容，目前信息量较少，仅有简短描述与时间点。后续如有补充，会在同一条目下更新。</p>
+          <div class="meta"><span>更新 21:04</span><a href="#read">阅读提示</a></div>
+        </article>
+        <article class="card" data-type="check">
+          <span class="tag">待核实</span>
+          <h3>说法存在矛盾的一条</h3>
+          <p>不同来源的表述互相冲突，暂无一致结论。此类条目会被单独标注，避免与已确认的信息混在一起。</p>
+          <div class="meta"><span>状态 待核实</span><a href="#read">阅读提示</a></div>
+        </article>
+        <article class="card" data-type="hot">
+          <span class="tag">热门</span>
+          <h3>被反复转发的旧话题</h3>
+          <p>内容并非今天首次出现，但因新细节被重新提起。阅读时注意区分原始时间与本次传播时间。</p>
+          <div class="meta"><span>热度 中高</span><a href="#review">回看昨日</a></div>
+        </article>
+        <article class="card" data-type="new">
+          <span class="tag">最新</span>
+          <h3>评论区补充的细节</h3>
+          <p>部分细节来自网友补充，真实性未经验证。这类内容在51今日爆料每日大赛中会与主体信息分开呈现。</p>
+          <div class="meta"><span>更新 22:11</span><a href="#read">阅读提示</a></div>
+        </article>
+        <article class="card" data-type="check">
+          <span class="tag">待核实</span>
+          <h3>配图来源不明的条目</h3>
+          <p>图片被多次使用，但原始出处无法确认。页面提示读者谨慎对待，不要仅凭单张图片下结论。</p>
+          <div class="meta"><span>状态 待核实</span><a href="#read">阅读提示</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 昨日回看 -->
+  <section id="review">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">REVIEW</p>
+        <h2>昨日回看：哪些还在继续</h2>
+        <p>不是所有爆料当天就结束。这里挑出几条昨日条目，说明它们今天的进展，帮助你接上前因后果。</p>
+      </div>
+      <div class="feature">
+        <div class="feat">
+          <h3>仍在发酵的两条</h3>
+          <p>昨天出现的话题今天仍有新说法，讨论重心从“发生了什么”转向“谁先说的”。</p>
+          <ul>
+            <li><b>话题一：</b>新增了一段回应，但未覆盖此前的疑问。</li>
+            <li><b>话题二：</b>传播路径被梳理，早期版本与现在差别较大。</li>
+          </ul>
+        </div>
+        <div class="feat">
+          <h3>已经降温的三条</h3>
+          <p>热度回落并不等于有结论，更多是注意力转移。</p>
+          <ul>
+            <li><b>讨论减少：</b>没有新信息补充，评论自然变少。</li>
+            <li><b>说法趋同：</b>多方表述接近，分歧点缩小。</li>
+            <li><b>被新话题覆盖：</b>今日新条目分流了关注。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 吃瓜须知 -->
+  <section id="read">
+    <div class="wrap">
+      <div class="article">
+        <h2>吃瓜须知：怎么读这些爆料</h2>
+        <p><strong>51今日爆料每日大赛</strong>是一个按天汇总热点爆料的页面。它做的是收集与排列，把同一天里流传较广的说法、回应和讨论放在一起，让读者不用来回跳转就能看清大致轮廓。它不生产信息，也不替任何一方下判断。</p>
+        <h3>先看时间，再看状态</h3>
+        <p>同一条爆料在上午和晚上的含义可能完全不同。页面为每条内容标注更新时间，并区分“热门”“最新”“待核实”三种状态。<strong>待核实</strong>意味着来源之间说法冲突，或者关键信息缺失，这类条目不适合当作结论引用。</p>
+        <h3>区分原始内容与传播版本</h3>
+        <p>不少争议来自二次转述。一段话被截取、一张图被换配文，都会让原意走样。51今日爆料每日大赛在条目中尽量保留最早的表述，并把后续补充单独列出，方便你对照。遇到只有结论没有出处的说法，先放一放。</p>
+        <h3>把互动当作参考，不当作证据</h3>
+        <p>评论多、转发快，说明话题受关注，但不等于内容成立。热门条目的排序反映的是讨论热度，不是真实性排序。阅读时可以留意评论区里是否有人提供了可查证的线索，而不是只看情绪表态。</p>
+        <h3>每天回看一次就够了</h3>
+        <p>爆料类内容更新频繁，但真正有信息量的变化通常一天只有几次。51今日爆料每日大赛在晚间会整理当日条目，把已澄清、已降温的部分标注出来。与其反复刷新，不如在固定时间看一次当日汇总，效率更高，也更容易看清脉络。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 下载 -->
+  <section id="download">
+    <div class="wrap">
+      <div class="download">
+        <div>
+          <h3>获取每日爆料清单</h3>
+          <p>整理好的当日条目清单，按时间与状态排列，方便离线查看。文件准备中，入口开放后可下载。</p>
+        </div>
+        <a class="btn btn-primary btn-disabled" href="#" data-download-placeholder="true" aria-disabled="true" tabindex="-1">下载</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo-text">51今日爆料每日大赛</div>
+        <p>按天汇总热点爆料与网友讨论，标注更新时间与内容状态，帮助读者快速了解当日话题轮廓。</p>
+      </div>
+      <div class="footer-links">
+        <div>
+          <span>浏览</span>
+          <a href="#today">今日看点</a>
+          <a href="#list">爆料列表</a>
+          <a href="#review">昨日回看</a>
+        </div>
+        <div>
+          <span>说明</span>
+          <a href="#read">吃瓜须知</a>
+          <a href="#download">获取更新</a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>内容为当日网络讨论汇总，不代表事实认定。</span>
+      <span>51今日爆料每日大赛 · 每日更新</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var toggle=document.getElementById('menuToggle');
+  var nav=document.getElementById('nav');
+  if(toggle&&nav){
+    toggle.addEventListener('click',function(){
+      var open=nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded',open?'true':'false');
+    });
+    nav.addEventListener('click',function(e){
+      if(e.target.tagName==='A'){nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');}
+    });
+  }
+  var chips=document.querySelectorAll('.chip');
+  var cards=document.querySelectorAll('#feed .card');
+  chips.forEach(function(chip){
+    chip.addEventListener('click',function(){
+      chips.forEach(function(c){c.classList.remove('active');});
+      chip.classList.add('active');
+      var f=chip.getAttribute('data-filter');
+      cards.forEach(function(card){
+        var t=card.getAttribute('data-type');
+        card.style.display=(f==='all'||t===f)?'':'none';
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
