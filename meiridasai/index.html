@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日大赛yandex-每日大赛yandex热点榜单_每日大赛yandex最新黑料爆料</title>
+<meta name="description" content="每日大赛yandex热点内容首页，汇总每日大赛yandex最新榜单动态、热门爆料与吃瓜看点，提供清晰的浏览入口与内容分区，方便快速查看当日热点。">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1229'/%3E%3Cpath d='M18 40l10-18 8 12 6-8 6 14z' fill='%23ff6b3d'/%3E%3Ccircle cx='46' cy='20' r='5' fill='%23ffd166'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --ink:#1b1229;
+    --ink-2:#2c2040;
+    --paper:#f6f2ea;
+    --card:#fffdf8;
+    --line:#e3dccd;
+    --hot:#ff6b3d;
+    --hot-2:#e8501f;
+    --gold:#ffd166;
+    --muted:#6f6558;
+    --radius:18px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{width:100%;max-width:1140px;margin:0 auto;padding:0 22px;}
+
+  /* 页头 */
+  header.site{
+    background:var(--ink);
+    color:#fff;
+    position:sticky;top:0;z-index:50;
+    border-bottom:3px solid var(--hot);
+  }
+  .nav-bar{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:18px;padding:14px 0;flex-wrap:wrap;
+  }
+  .logo{
+    display:flex;align-items:center;gap:11px;
+    font-size:19px;font-weight:800;letter-spacing:.5px;
+    color:#fff;white-space:nowrap;
+  }
+  .logo .mark{
+    width:38px;height:38px;border-radius:11px;
+    background:linear-gradient(140deg,var(--hot),#ff9a3d);
+    display:flex;align-items:center;justify-content:center;flex:none;
+  }
+  nav.main ul{
+    list-style:none;display:flex;gap:8px;margin:0;padding:0;flex-wrap:wrap;
+  }
+  nav.main a{
+    display:inline-block;padding:7px 13px;border-radius:999px;
+    font-size:14.5px;color:#e5dced;transition:.2s;
+  }
+  nav.main a:hover,nav.main a:focus-visible{background:#3a2c52;color:#fff;}
+  nav.main a.hot{background:var(--hot);color:#fff;font-weight:600;}
+  nav.main a.hot:hover{background:var(--hot-2);}
+
+  /* 首屏 */
+  .hero{
+    background:radial-gradient(circle at 82% 18%,#3c2a58 0%,#1b1229 55%,#150e21 100%);
+    color:#fff;position:relative;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:auto -60px -120px auto;
+    width:340px;height:340px;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,107,61,.35),transparent 68%);
+    pointer-events:none;
+  }
+  .hero-inner{
+    position:relative;z-index:2;
+    display:grid;grid-template-columns:1.35fr .9fr;gap:44px;
+    padding:60px 0 66px;align-items:center;
+  }
+  .tagline{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(255,107,61,.16);border:1px solid rgba(255,107,61,.5);
+    color:#ffb08c;font-size:13px;font-weight:600;
+    padding:5px 14px;border-radius:999px;margin-bottom:20px;
+  }
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--hot);}
+  h1{
+    font-size:clamp(30px,4.6vw,46px);
+    line-height:1.22;margin:0 0 18px;font-weight:900;letter-spacing:.5px;
+  }
+  h1 .hl{color:var(--gold);}
+  .lead{
+    font-size:16.5px;color:#cfc4dd;max-width:560px;margin:0 0 28px;
+  }
+  .cta-row{display:flex;gap:13px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:12px 24px;border-radius:12px;font-weight:700;font-size:15px;
+    border:1.5px solid transparent;transition:.2s;cursor:pointer;
+  }
+  .btn-primary{background:var(--hot);color:#fff;}
+  .btn-primary:hover{background:var(--hot-2);transform:translateY(-1px);}
+  .btn-ghost{border-color:#5a4877;color:#eae2f5;}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+  .hero-side{
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:var(--radius);padding:22px;
+    backdrop-filter:blur(4px);
+  }
+  .hero-side h2{
+    font-size:14px;letter-spacing:1.5px;color:#a99ac0;
+    margin:0 0 14px;font-weight:600;
+  }
+  .mini-list{list-style:none;margin:0;padding:0;display:grid;gap:12px;}
+  .mini-list li{
+    display:flex;gap:11px;align-items:flex-start;font-size:14.5px;color:#ded5ea;
+  }
+  .num{
+    flex:none;width:22px;height:22px;border-radius:7px;
+    background:#3a2c52;color:var(--gold);
+    font-size:12.5px;font-weight:800;
+    display:flex;align-items:center;justify-content:center;margin-top:3px;
+  }
+  .mini-list li:nth-child(1) .num{background:var(--hot);color:#fff;}
+
+  /* 通用区块 */
+  section{padding:62px 0;}
+  .sec-head{margin-bottom:34px;}
+  .kicker{
+    font-size:13px;font-weight:700;letter-spacing:2px;
+    color:var(--hot-2);text-transform:uppercase;margin:0 0 8px;
+  }
+  .sec-head h2{
+    font-size:clamp(23px,3vw,30px);margin:0 0 10px;font-weight:900;line-height:1.3;
+  }
+  .sec-head p{margin:0;color:var(--muted);font-size:15.5px;max-width:680px;}
+
+  /* 榜单卡片 */
+  .board-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+  }
+  .card{
+    background:var(--card);border:1px solid var(--line);
+    border-radius:var(--radius);padding:24px;
+    display:flex;flex-direction:column;gap:12px;
+    transition:.22s;
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:0 14px 30px -18px rgba(27,18,41,.45);border-color:#cdbfa8;}
+  .card .tag{
+    align-self:flex-start;font-size:12px;font-weight:700;
+    background:#ffe9df;color:var(--hot-2);
+    padding:3px 10px;border-radius:999px;
+  }
+  .card h3{font-size:17.5px;margin:0;line-height:1.45;font-weight:800;}
+  .card p{margin:0;font-size:14.5px;color:var(--muted);line-height:1.72;}
+  .card .meta{
+    margin-top:auto;padding-top:12px;border-top:1px dashed var(--line);
+    font-size:13px;color:#948a7b;display:flex;justify-content:space-between;
+  }
+
+  /* 图文内容区 */
+  .feature{
+    background:var(--card);border:1px solid var(--line);border-radius:22px;
+    padding:34px;display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center;
+  }
+  .feature .art{
+    border-radius:16px;overflow:hidden;background:#1b1229;
+  }
+  .feature h3{font-size:22px;margin:0 0 14px;font-weight:900;}
+  .feature p{margin:0 0 14px;font-size:15px;color:#4a4136;line-height:1.85;}
+  .feature p:last-of-type{margin-bottom:0;}
+  .check-list{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:10px;}
+  .check-list li{
+    font-size:14.5px;color:#4a4136;display:flex;gap:10px;align-items:flex-start;
+  }
+  .check-list li::before{
+    content:"";flex:none;width:16px;height:16px;margin-top:4px;border-radius:5px;
+    background:var(--hot);
+    clip-path:polygon(14% 46%,0 62%,40% 100%,100% 22%,84% 8%,38% 66%);
+  }
+
+  /* 时间线 */
+  .timeline{list-style:none;margin:0;padding:0;display:grid;gap:0;}
+  .timeline li{
+    position:relative;padding:0 0 26px 34px;border-left:2px solid var(--line);
+  }
+  .timeline li:last-child{border-left-color:transparent;padding-bottom:0;}
+  .timeline li::before{
+    content:"";position:absolute;left:-8px;top:5px;width:14px;height:14px;
+    border-radius:50%;background:var(--card);border:3px solid var(--hot);
+  }
+  .timeline time{
+    display:block;font-size:13px;font-weight:700;color:var(--hot-2);margin-bottom:4px;
+    letter-spacing:.5px;
+  }
+  .timeline strong{display:block;font-size:16px;margin-bottom:4px;}
+  .timeline span{font-size:14.5px;color:var(--muted);}
+
+  /* 搜索筛选 */
+  .toolbar{
+    display:flex;gap:12px;flex-wrap:wrap;align-items:center;
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:14px 16px;margin-bottom:26px;
+  }
+  .toolbar label{font-size:14px;font-weight:700;color:#4a4136;}
+  .toolbar input{
+    flex:1;min-width:180px;padding:10px 14px;border-radius:10px;
+    border:1px solid var(--line);background:#fbf8f1;
+    font-size:14.5px;font-family:inherit;color:var(--ink);
+  }
+  .toolbar input:focus{outline:2px solid var(--hot);outline-offset:1px;}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;}
+  .chip{
+    padding:7px 15px;border-radius:999px;border:1px solid var(--line);
+    background:#fbf8f1;font-size:13.5px;font-weight:600;color:#5c5346;
+    cursor:pointer;font-family:inherit;transition:.18s;
+  }
+  .chip:hover{border-color:var(--hot);color:var(--hot-2);}
+  .chip.active{background:var(--ink);border-color:var(--ink);color:#fff;}
+
+  /* 内容列表 */
+  .feed{display:grid;gap:14px;}
+  .feed-item{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:20px 22px;display:grid;grid-template-columns:64px 1fr auto;gap:18px;align-items:center;
+    transition:.18s;
+  }
+  .feed-item:hover{border-color:#cdbfa8;background:#fffefb;}
+  .feed-item .idx{
+    font-size:26px;font-weight:900;color:#e0d6c5;line-height:1;text-align:center;
+  }
+  .feed-item h3{font-size:16.5px;margin:0 0 5px;font-weight:800;line-height:1.45;}
+  .feed-item p{margin:0;font-size:14px;color:var(--muted);line-height:1.65;}
+  .feed-item .stamp{
+    font-size:12.5px;color:#948a7b;white-space:nowrap;text-align:right;
+  }
+  .empty-tip{
+    display:none;padding:26px;text-align:center;color:var(--muted);
+    background:var(--card);border:1px dashed var(--line);border-radius:14px;font-size:14.5px;
+  }
+
+  /* 下载区 */
+  .download-band{
+    background:linear-gradient(120deg,#241834,#3a2a55);
+    border-radius:22px;padding:42px 38px;color:#fff;
+    display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap;
+  }
+  .download-band h2{margin:0 0 10px;font-size:24px;font-weight:900;}
+  .download-band p{margin:0;color:#c8bcd9;font-size:15px;max-width:520px;}
+  .btn-disabled{
+    background:var(--gold);color:#3a2200;font-weight:800;
+    padding:13px 30px;border-radius:12px;font-size:15px;
+    pointer-events:none;opacity:.92;
+  }
+
+  /* 页尾 */
+  footer.site{
+    background:var(--ink);color:#a99ac0;padding:44px 0 34px;margin-top:20px;
+  }
+  .foot-grid{
+    display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;
+    padding-bottom:26px;border-bottom:1px solid #352845;
+  }
+  .foot-brand{max-width:340px;}
+  .foot-brand .logo{margin-bottom:12px;}
+  .foot-brand p{font-size:14px;margin:0;line-height:1.75;color:#8d80a4;}
+  .foot-links{display:flex;gap:56px;flex-wrap:wrap;}
+  .foot-links h4{color:#fff;font-size:14px;margin:0 0 12px;font-weight:700;}
+  .foot-links ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;}
+  .foot-links a{font-size:14px;color:#a99ac0;}
+  .foot-links a:hover{color:var(--gold);}
+  .copyright{
+    padding-top:22px;font-size:13px;color:#7d7093;
+    display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  }
+
+  @media (max-width:900px){
+    .hero-inner{grid-template-columns:1fr;gap:34px;padding:44px 0 52px;}
+    .board-grid{grid-template-columns:1fr 1fr;}
+    .feature{grid-template-columns:1fr;padding:26px;}
+    .foot-links{gap:34px;}
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 16px;}
+    .nav-bar{padding:11px 0;gap:10px;}
+    .logo{font-size:16px;}
+    .logo .mark{width:32px;height:32px;}
+    nav.main ul{gap:4px;}
+    nav.main a{padding:6px 10px;font-size:13.5px;}
+    section{padding:44px 0;}
+    .board-grid{grid-template-columns:1fr;}
+    .feed-item{grid-template-columns:1fr;gap:8px;padding:18px;}
+    .feed-item .idx{font-size:18px;text-align:left;color:var(--hot);}
+    .feed-item .stamp{text-align:left;}
+    .download-band{padding:30px 22px;}
+    .hero-side{padding:18px;}
+    .lead{font-size:15.5px;}
+    .toolbar{padding:12px;}
+    .foot-links{gap:26px;}
+  }
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav-bar">
+    <a class="logo" href="#top">
+      <span class="mark" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M4 17l5-9 3.6 5.2L15.6 9 20 17H4z" fill="#fff"/>
+          <circle cx="18" cy="6" r="2.2" fill="#ffd166"/>
+        </svg>
+      </span>
+      每日大赛yandex
+    </a>
+    <nav class="main" aria-label="主导航">
+      <ul>
+        <li><a href="#board" class="hot">今日热点</a></li>
+        <li><a href="#feed">榜单浏览</a></li>
+        <li><a href="#detail">内容看点</a></li>
+        <li><a href="#timeline">更新脉络</a></li>
+        <li><a href="#download">获取入口</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 首屏 -->
+  <div class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <span class="tagline"><span class="dot"></span>热点内容首页 · 当日榜单浏览</span>
+        <h1>每日大赛yandex</h1>
+        <p class="lead">每日大赛yandex 汇集当日热点榜单与吃瓜看点，把分散的爆料线索按条目整理在同一页面。想先看哪一条，从下方的热点卡片或榜单列表直接进入即可。</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#feed">
+            浏览今日榜单
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#detail">先看内容看点</a>
+        </div>
+      </div>
+      <aside class="hero-side" aria-label="今日速览">
+        <h2>今日速览</h2>
+        <ul class="mini-list">
+          <li><span class="num">1</span><span>榜单头部条目更新较密集，建议按时间倒序查看。</span></li>
+          <li><span class="num">2</span><span>热点爆料以短条目呈现，标题即可判断大致方向。</span></li>
+          <li><span class="num">3</span><span>吃瓜看点按主题归组，同一线索的后续整理在同一卡片内。</span></li>
+          <li><span class="num">4</span><span>页面内容随当日更新调整，历史条目保留浏览位置。</span></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+
+  <!-- 热点卡片 -->
+  <section id="board">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker">今日热点</p>
+        <h2>每日大赛yandex 三个常看板块</h2>
+        <p>把当日内容按访问习惯拆成三块：先看榜单名次变化，再看爆料线索，最后看吃瓜讨论的走向。每一块都给出独立入口，不必从头翻到尾。</p>
+      </div>
+      <div class="board-grid">
+        <article class="card">
+          <span class="tag">榜单</span>
+          <h3>名次与条目变化</h3>
+          <p>关注每日大赛yandex 榜单头部条目的进出，哪些内容当天被更多读者点开，哪些条目在午后出现位置调整。卡片只保留变化本身，细节放在列表区。</p>
+          <div class="meta"><span>更新频率：当日多次</span><span>阅读约 2 分钟</span></div>
+        </article>
+        <article class="card">
+          <span class="tag">爆料</span>
+          <h3>热点线索速读</h3>
+          <p>爆料条目以一句话概括为主，读者可以先判断是否与自己的关注点相关，再决定是否展开。每日大赛yandex 的爆料以线索形式出现，不代替完整叙述。</p>
+          <div class="meta"><span>形式：短条目</span><span>阅读约 1 分钟</span></div>
+        </article>
+        <article class="card">
+          <span class="tag">吃瓜</span>
+          <h3>讨论走向梳理</h3>
+          <p>同一话题下往往出现多种说法，这里按讨论热度排序，标注哪些说法仍在持续。每日大赛yandex 热点页只呈现讨论本身，不对未确认内容下结论。</p>
+          <div class="meta"><span>形式：话题归组</span><span>阅读约 3 分钟</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 内容看点 -->
+  <section id="detail" style="padding-top:0;">
+    <div class="wrap">
+      <div class="feature">
+        <div class="art" aria-hidden="true">
+          <svg viewBox="0 0 480 320" width="100%" role="img">
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#ff6b3d"/>
+                <stop offset="1" stop-color="#ffb347"/>
+              </linearGradient>
+            </defs>
+            <rect width="480" height="320" fill="#1b1229"/>
+            <circle cx="392" cy="66" r="42" fill="#2f2144"/>
+            <circle cx="392" cy="66" r="22" fill="#ffd166" opacity=".9"/>
+            <rect x="46" y="58" width="196" height="16" rx="8" fill="#3a2c52"/>
+            <rect x="46" y="86" width="132" height="12" rx="6" fill="#2f2144"/>
+            <rect x="46" y="132" width="388" height="58" rx="12" fill="#241834"/>
+            <rect x="64" y="150" width="120" height="10" rx="5" fill="url(#g1)"/>
+            <rect x="64" y="168" width="210" height="8" rx="4" fill="#3a2c52"/>
+            <rect x="46" y="206" width="388" height="58" rx="12" fill="#241834"/>
+            <rect x="64" y="224" width="86" height="10" rx="5" fill="#ffd166"/>
+            <rect x="64" y="242" width="176" height="8" rx="4" fill="#3a2c52"/>
+            <rect x="46" y="280" width="96" height="8" rx="4" fill="#2f2144"/>
+          </svg>
+        </div>
+        <div>
+          <h3>这个页面想解决什么</h3>
+          <p>访问每日大赛yandex 的读者，多数是想快速知道今天有哪些内容被频繁讨论。因此首页把「今天发生了什么」放在最前，把「怎么找到那一条」做成可点击的列表，而不是堆叠长文。</p>
+          <p>每日大赛yandex 的内容以热点条目为单位，每条都有独立标题与一句话摘要。这样读者不必在长段落里寻找关键词，扫一眼就能确定是否继续。</p>
+          <ul class="check-list">
+            <li>榜单浏览：按位置与时间两种顺序切换</li>
+            <li>热点速读：标题加一句话摘要，先判断再展开</li>
+            <li>讨论归组：同一话题的多种说法集中呈现</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 榜单浏览 + 搜索筛选 -->
+  <section id="feed" style="padding-top:0;">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker">榜单浏览</p>
+        <h2>按关键词筛选今日条目</h2>
+        <p>输入关键词即可过滤下方条目，或点击标签快速切换关注方向。筛选只作用于本页已有内容，结果实时显示。</p>
+      </div>
+
+      <div class="toolbar">
+        <label for="q">关键词</label>
+        <input id="q" type="search" placeholder="输入榜单、爆料、吃瓜等关键词" autocomplete="off">
+        <div class="chips" role="group" aria-label="快捷筛选">
+          <button class="chip active" type="button" data-k="">全部</button>
+          <button class="chip" type="button" data-k="榜单">榜单</button>
+          <button class="chip" type="button" data-k="爆料">爆料</button>
+          <button class="chip" type="button" data-k="吃瓜">吃瓜</button>
+        </div>
+      </div>
+
+      <div class="feed" id="feedList">
+        <article class="feed-item" data-k="榜单 热点">
+          <span class="idx">01</span>
+          <div>
+            <h3>今日榜单头部条目出现位置调整</h3>
+            <p>每日大赛yandex 榜单前排条目在午后有一次整体位移，读者可按时间倒序重新查看变化。</p>
+          </div>
+          <span class="stamp">榜单 · 今日</span>
+        </article>
+        <article class="feed-item" data-k="爆料 热点">
+          <span class="idx">02</span>
+          <div>
+            <h3>一条爆料线索被多次引用</h3>
+            <p>同一线索在多个讨论中出现，每日大赛yandex 热点页将其归入同一卡片，方便对照不同说法。</p>
+          </div>
+          <span class="stamp">爆料 · 今日</span>
+        </article>
+        <article class="feed-item" data-k="吃瓜 讨论">
+          <span class="idx">03</span>
+          <div>
+            <h3>吃瓜讨论集中在少数几个话题</h3>
+            <p>讨论热度并未均匀分布，少数话题占据大部分回复。页面按热度排序，尚未确认的说法单独标注。</p>
+          </div>
+          <span class="stamp">吃瓜 · 今日</span>
+        </article>
+        <article class="feed-item" data-k="榜单 历史">
+          <span class="idx">04</span>
+          <div>
+            <h3>历史条目保留在原位置</h3>
+            <p>每日大赛yandex 不隐藏旧条目，读者向下滚动仍可看到前一日的内容与当时的摘要表述。</p>
+          </div>
+          <span class="stamp">榜单 · 昨日</span>
+        </article>
+        <article class="feed-item" data-k="爆料 吃瓜">
+          <span class="idx">05</span>
+          <div>
+            <h3>爆料与讨论之间的时间差</h3>
+            <p>线索出现往往早于讨论高峰，两者在列表里分列不同区块，读者可对比出现顺序。</p>
+          </div>
+          <span class="stamp">爆料 · 昨日</span>
+        </article>
+        <article class="feed-item" data-k="榜单 热点 吃瓜">
+          <span class="idx">06</span>
+          <div>
+            <h3>热点条目在同一页面完成收束</h3>
+            <p>当日主要条目浏览完毕后，页面末段给出下载入口与页尾导航，读者可继续前往下一区。</p>
+          </div>
+          <span class="stamp">榜单 · 今日</span>
+        </article>
+      </div>
+      <div class="empty-tip" id="emptyTip">没有匹配的条目，换个关键词或点击「全部」再看看。</div>
+    </div>
+  </section>
+
+  <!-- 更新脉络 -->
+  <section id="timeline" style="padding-top:0;">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker">更新脉络</p>
+        <h2>一天之内的浏览节奏</h2>
+        <p>热点内容的变化集中在几个时段，下面按常见节奏说明每日大赛yandex 页面的更新顺序，方便读者安排查看时间。</p>
+      </div>
+      <ul class="timeline">
+        <li>
+          <time>上午</time>
+          <strong>榜单初步成型</strong>
+          <span>前一日内容逐渐退位，新条目开始进入榜单，此时查看可了解当日大致方向。</span>
+        </li>
+        <li>
+          <time>午后</time>
+          <strong>位置调整较明显</strong>
+          <span>每日大赛yandex 榜单头部条目出现位移，爆料线索随之增多，是浏览的高峰时段。</span>
+        </li>
+        <li>
+          <time>傍晚</time>
+          <strong>讨论集中出现</strong>
+          <span>吃瓜讨论围绕少数话题聚拢，多种说法同屏呈现，适合对照阅读。</span>
+        </li>
+        <li>
+          <time>夜间</time>
+          <strong>条目趋于稳定</strong>
+          <span>新增内容减少，页面以整理与保留为主，读者可回看当天遗漏的条目。</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 下载区 -->
+  <section id="download" style="padding-top:0;">
+    <div class="wrap">
+      <div class="download-band">
+        <div>
+          <h2>获取每日大赛yandex 内容入口</h2>
+          <p>下载入口用于后续获取页面内容的整理版本，包含榜单条目与热点摘要。当前入口尚未开放，开放后可直接点击获取。</p>
+        </div>
+        <a class="btn-disabled" href="#" data-download-placeholder="true" aria-disabled="true" tabindex="-1">下载</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="logo" href="#top">
+          <span class="mark" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M4 17l5-9 3.6 5.2L15.6 9 20 17H4z" fill="#fff"/>
+              <circle cx="18" cy="6" r="2.2" fill="#ffd166"/>
+            </svg>
+          </span>
+          每日大赛yandex
+        </a>
+        <p>每日大赛yandex 热点内容首页，按榜单、爆料与吃瓜三条线索组织当日条目，帮助读者更快找到正在被讨论的内容。</p>
+      </div>
+      <div class="foot-links">
+        <div>
+          <h4>内容分区</h4>
+          <ul>
+            <li><a href="#board">今日热点</a></li>
+            <li><a href="#feed">榜单浏览</a></li>
+            <li><a href="#detail">内容看点</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>页面导航</h4>
+          <ul>
+            <li><a href="#timeline">更新脉络</a></li>
+            <li><a href="#download">获取入口</a></li>
+            <li><a href="#top">回到顶部</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>每日大赛yandex · 热点内容浏览页</span>
+      <span>内容以当日条目为准，未确认说法单独标注</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var input = document.getElementById('q');
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var items = Array.prototype.slice.call(document.querySelectorAll('#feedList .feed-item'));
+  var emptyTip = document.getElementById('emptyTip');
+  var activeChip = '';
+
+  function applyFilter(){
+    var kw = (input.value || '').trim().toLowerCase();
+    var chipKw = activeChip.toLowerCase();
+    var shown = 0;
+    items.forEach(function(item){
+      var text = (item.getAttribute('data-k') + ' ' + item.textContent).toLowerCase();
+      var okKw = !kw || text.indexOf(kw) !== -1;
+      var okChip = !chipKw || text.indexOf(chipKw) !== -1;
+      var ok = okKw && okChip;
+      item.style.display = ok ? '' : 'none';
+      if(ok) shown++;
+    });
+    emptyTip.style.display = shown ? 'none' : 'block';
+  }
+
+  input.addEventListener('input', applyFilter);
+
+  chips.forEach(function(chip){
+    chip.addEventListener('click', function(){
+      chips.forEach(function(c){ c.classList.remove('active'); });
+      chip.classList.add('active');
+      activeChip = chip.getAttribute('data-k') || '';
+      applyFilter();
+    });
+  });
+})();
+</script>
+
+</body>
+  </html>
